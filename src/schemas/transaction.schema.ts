@@ -17,7 +17,7 @@ export const createTransactionSchema = z.object({
     }), 
 });
 
-export const getTransactionSchema = z.object({
+export const getTransactionsSchema = z.object({
     month: z.string().optional(),
     year: z.string().optional(),
      type: z.enum([TransactionType.expense, TransactionType.income],{
@@ -28,5 +28,17 @@ export const getTransactionSchema = z.object({
     }).optional(), 
 });
 
-export type getTransactionsQuery = z.infer<typeof getTransactionSchema>
+export const getTransactionsSummarySchema = z.object({
+    month: z.string({message: "O mês é obrigatorio"}),
+    year: z.string({message: "O ano é obrigatorio"}),
+})
 
+export const deleteTransactionSchema = z.object({
+    id: z.string().refine(isValidObjectId, {
+        message: "ID inválida",
+    }),
+});
+
+export type GetTransactionsSummaryQuery = z.infer<typeof getTransactionsSummarySchema>;
+export type GetTransactionsQuery = z.infer<typeof getTransactionsSchema>;
+export type deleteTransactionParams = z.infer<typeof deleteTransactionSchema>;

@@ -1,4 +1,5 @@
 import { TransactionType } from "@prisma/client"
+import { CategorySummary } from "./category.types";
 
 
 export interface TransactionFilter {
@@ -10,6 +11,13 @@ export interface TransactionFilter {
     type?: TransactionType;
     categoryId?: string;
 }
+
+export interface TransactionSummary{
+    totalExpenses: number;
+    totalIncomes: number;
+    balance: number;
+    expensesByCategory: CategorySummary[];
+} 
 
 // gte -> Greater Than or Equal -> Maior ou igual.
 // lte -> Less Than or Equal -> Menor ou igual.

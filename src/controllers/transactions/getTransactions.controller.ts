@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { getTransactionsQuery } from "../../schemas/transaction.schema";
+import { GetTransactionsQuery } from "../../schemas/transaction.schema";
 import { TransactionFilter } from "../../types/transaction.types";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc"
@@ -7,7 +7,7 @@ import prisma from "../../config/prisma";
 
 dayjs.extend(utc)
 
-export const getTransactions = async(request: FastifyRequest<{Querystring:getTransactionsQuery}>, reply: FastifyReply): Promise<void> =>{
+export const getTransactions = async(request: FastifyRequest<{Querystring:GetTransactionsQuery}>, reply: FastifyReply): Promise<void> =>{
      const userId = "FED$%DF%RDF" //userID => request.userId
 
     if(!userId){
