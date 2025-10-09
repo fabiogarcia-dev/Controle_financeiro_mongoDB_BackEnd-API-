@@ -1,4 +1,5 @@
 import Fastify from "fastify";
+import cors from '@fastify/cors'
 import type { FastifyInstance } from "fastify"
 import routes from "./routes";
 import { env } from "./config/env";
@@ -14,6 +15,10 @@ const app:FastifyInstance = Fastify({
         level: env.NODE_ENV === "dev" ? "info" : "error",
     },
 }).withTypeProvider<ZodTypeProvider>();
+
+
+
+app.register(cors);
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
